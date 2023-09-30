@@ -1,0 +1,39 @@
+<h2 style="text-align: center;">******************* Authors *******************</h2>
+{% set nb=0%}
+{% if tab|length != 0 %} 
+<table border=1>
+<tr>
+<tr>
+<th> ID </th>
+<th> Picture </th>
+<th> Username </th>
+<th> Email </th>
+<th> Nb_books</th>
+<th> Details </th>
+</tr>
+{%for element in tab %}
+{% set nb= nb + element.nb_books %}
+<tr>
+<td> {{element.id}}</td>
+<td> <img src="{{element.picture}}" height=220 width=220></td>
+<td> <b>{{element.username|upper}}</b></td>
+<td> {{element.email}}</td>
+<td> {{element.nb_books}}</td>
+<td><a href="{{path('app_details',{'id' :element.id   ,'picture' : element.picture ,'email' : element.email ,'nb_books' : element.nb_books })}}">details</a></td>
+</tr>
+{%endfor%}
+</table>
+{% else %}
+<h1> Pas d'element !! <h1>
+{% endif %}
+
+<br>
+<br>
+<hr>
+<h2> Le Nombre des auteurs : {{tab|length}}</h2>
+<hr>
+<hr>
+<h2> Le Nombre total des livres : {{nb}}</h2>
+<hr>
+{#<link rel='stylesheet' href='/css/'>
+<script src="/js/" >->#}
